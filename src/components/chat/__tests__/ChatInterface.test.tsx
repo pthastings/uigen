@@ -170,8 +170,9 @@ test("renders with correct layout classes", () => {
   expect(mainDiv.className).toContain("p-4");
   expect(mainDiv.className).toContain("overflow-hidden");
 
-  const scrollArea = screen.getByTestId("message-list").closest(".flex-1");
-  expect(scrollArea?.className).toContain("overflow-hidden");
+  // The ScrollArea handles overflow; inner content div uses flex layout
+  const contentDiv = screen.getByTestId("message-list").closest(".flex-1");
+  expect(contentDiv?.className).toContain("flex-col");
 
   const inputWrapper = screen.getByTestId("message-input").parentElement;
   expect(inputWrapper?.className).toContain("mt-4");
